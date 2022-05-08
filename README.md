@@ -15,7 +15,7 @@ This dockerfile uses Alpine Linux to run an openssh server daemon.
 
 Two directories can optionally be exposed to the docker host system. Doing so will preserve the ssh servers host keys and the shell users ssh files. If you don't perist these directories, then you will have to trust the host id and re-add authorized keys every time the container is rebuilt.
 
-| File or Folder | Description | 
+| File or Folder | Description |
 | -------------- | ----------- |
 | ```/etc/sshsavedhostkeys``` | entrypoint.sh saves or restores this ssh server keys as needed|
 | ```/home/shelluser/.ssh```  | shelluser - The jump user's .ssh folder containing the the PKI key, authorized_keys and known_hosts |
