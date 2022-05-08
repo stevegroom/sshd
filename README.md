@@ -24,25 +24,44 @@ The image creates the sshd daemon's server keys in a mountable volume. This mean
 
 # Quick command summary
 
-## Rebuild
+## Rebuild / run your own
 
 ```bash
 docker stop sshd;docker rm sshd;docker build --tag sshd .
+```
+
+## Pull from github
+
+```bash
+docker pull ghcr.io/stevegroom/sshd:latest
 ```
 
 ## Start without persistance
 
 ```bash
 docker run --name sshd --detach --port 122:22 sshd:latest
+-or-
+docker run --name sshd --detach --port 122:22 ghcr.io/stevegroom/sshd:latest
 ```
 
 ## Start with persistance
 
 ```bash
-docker run --name sshd --detach --port 122:22 \
+docker run --name sshd \
+ --detach \
+ --publish 122:22 \
  --volume ~/sshserver/persist/sshsavedhostkeys:/etc/sshsavedhostkeys \
  --volume ~/sshserver/persist/authorized_keys:/home/shelluser/.ssh/authorized_keys \
  sshd:latest
+
+ -or-
+
+docker run --name sshd \
+ --detach \
+ --publish 122:22 \
+ --volume ~/sshserver/persist/sshsavedhostkeys:/etc/sshsavedhostkeys \
+ --volume ~/sshserver/persist/authorized_keys:/home/shelluser/.ssh/authorized_keys \
+ ghcr.io/stevegroom/sshd:latest
 ```
 
 ## Add your public keys to the shelluser authorized_keys
