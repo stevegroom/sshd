@@ -1,5 +1,7 @@
 FROM alpine:3
 LABEL maintainer="Steve Groom stevereg1@groom.ch"
+LABEL org.opencontainers.image.source="https://github.com/stevegroom/sshd"
+
 
 # openssh server to act as a jump box into a private network
 #
