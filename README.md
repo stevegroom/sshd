@@ -47,8 +47,10 @@ docker run --name sshd --detach --port 122:22 \
 
 ## Add your public keys to the shelluser authorized_keys
 
+Repeat for all the keys you need to add
+
 ```bash
-docker exec -it sshd /addauthuser.sh "$(cat ~/.sshid_rsa.pub)"
+docker exec -it sshd /addauthuser.sh "$(cat ~/.ssh/id_rsa.pub)"
 
 -or-
 
