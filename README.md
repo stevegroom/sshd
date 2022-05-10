@@ -1,10 +1,8 @@
 # SSH Server ( can be used as part of traefik ingress)
 
-
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Docker Image CI](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml/badge.svg)](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml)
 [![Snyk Container](https://github.com/stevegroom/sshd/actions/workflows/snyk-container.yml/badge.svg)](https://github.com/stevegroom/sshd/actions/workflows/snyk-container.yml)
-
-![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=stevegroom&theme=blue-green)
 
 ## Background
 
