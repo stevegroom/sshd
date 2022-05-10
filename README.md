@@ -1,5 +1,7 @@
 # SSH Server ( can be used as part of traefik ingress)
 
+[![Docker Image CI](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml/badge.svg)](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml)
+
 ## Background
 
 I use Traefik to control access to my home network. For security I use 
