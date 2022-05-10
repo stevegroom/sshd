@@ -1,9 +1,11 @@
 FROM alpine:3
-LABEL maintainer="Steve Groom stevereg1@groom.ch"
+
+LABEL version="1.0"
+LABEL org.opencontainers.image.authors="Steve Groom stevereg1@groom.ch"
 LABEL org.opencontainers.image.source="https://github.com/stevegroom/sshd"
+LABEL org.opencontainers.image.description="openssh server to act as a jump \
+box into a private network"
 
-
-# openssh server to act as a jump box into a private network
 #
 # Steve Groom May 2022
 #
@@ -47,13 +49,13 @@ RUN echo -n 'shelluser:$(echo $RANDOM | base64 | head -c 20; echo)' | chpasswd
 # Open SSH listening on standard port
 EXPOSE 22
 
-# Entrypoint.sh - conditionally generate certificates and start the daemon.
-COPY entrypoint.sh /
 
 # Addauthuser.sh - append your personal rsa pub key to shellusers 
-# authorized_keys to allow unprompted logon
- 
+# authorized_keys to allow unprompted logon 
 COPY addauthuser.sh /
+
+# Entrypoint.sh - conditionally generate certificates and start the daemon.
+COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Post build you need to use docker-exec to add the public keys
@@ -64,11 +66,15 @@ ENTRYPOINT ["/entrypoint.sh"]
 # To use the server:
 # 
 # start the server:
-# docker run --name sshd -d -p 122:22 \
+# docker run --name sshd \
+# --detach \
+# --publish 122:22 \
 # --volume ~/path to your/sshsavedhostkeys:/etc/sshsavedhostkeys \
 # --volume ~/path to your/authorized_keys:/home/shelluser/.ssh/authorized_keys \
-#  sshd:latest
+#  ghcr.io/stevegroom/sshd:latest
 #
-# 1) add user id_rsa.pub to authorized_keys
+# add your user id_rsa.pub to authorized_keys
 # docker exec -it sshd /addauthuser.sh "$(cat ~/.ssh/id_rsa.pub )"
-# ssh -J shelluser@dockerhost:122 steve@192.168.1.185 -p 22 
+#
+# ssh to your private host via this server
+# ssh -J shelluser@exposed_dockerhost:122 youruser@private_address -p 22 
