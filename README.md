@@ -2,6 +2,8 @@
 
 [![Docker Image CI](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml/badge.svg)](https://github.com/stevegroom/sshd/actions/workflows/docker-image.yml)
 
+[![Snyk Container](https://github.com/stevegroom/sshd/actions/workflows/snyk-container.yml/badge.svg)](https://github.com/stevegroom/sshd/actions/workflows/snyk-container.yml)
+
 ## Background
 
 I use Traefik to control access to my home network. For security I use 
