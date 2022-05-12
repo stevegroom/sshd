@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  sshd:
+    
+    build: sshd
+
+    ports:
+      - "122:22" # TCP Port   - ssh
+
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - ".ssh:/home/shelluser/.ssh"
+      - "persist/sshsavedhostkeys:/etc/sshsavedhostkeys"
+      - "persist/shelluserssh:/home/shelluser/.ssh"
+
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    container_name: sshd
+
+    entrypoint: /entrypoint.sh
