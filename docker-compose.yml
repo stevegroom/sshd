@@ -4,7 +4,11 @@ services:
 
   sshd:
     
-    build: sshd
+    # Test locally via build or use the published image
+    
+    # uncomment build _or_ image
+    #build: sshd
+    image: ghcr.io/stevegroom/sshd:latest
 
     ports:
       - "122:22" # TCP Port   - ssh
