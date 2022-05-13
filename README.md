@@ -31,7 +31,7 @@ The image creates the sshd daemon's server keys in a mountable volume. This mean
 ## Rebuild / run your own
 
 ```bash
-docker stop sshd;docker rm sshd;docker build --tag sshd .
+docker stop sshd;docker rm sshd;docker build --tag sshd sshd
 ```
 
 ## Pull from github

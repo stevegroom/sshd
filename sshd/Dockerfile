@@ -56,6 +56,11 @@ COPY addauthuser.sh /
 
 # Entrypoint.sh - conditionally generate certificates and start the daemon.
 COPY entrypoint.sh /
+
+# Declare the exposed volumes
+VOLUME /etc/sshsavedhostkeys
+VOLUME /home/shelluser/.ssh
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Post build you need to use docker-exec to add the public keys

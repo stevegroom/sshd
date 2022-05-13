@@ -11,9 +11,8 @@ services:
 
     volumes:
       # So that Traefik can listen to the Docker events
-      - ".ssh:/home/shelluser/.ssh"
-      - "persist/sshsavedhostkeys:/etc/sshsavedhostkeys"
-      - "persist/shelluserssh:/home/shelluser/.ssh"
+      - "./persist/sshsavedhostkeys:/etc/sshsavedhostkeys:rw"
+      - "./persist/shelluserssh:/home/shelluser/.ssh:rw"
 
     logging:
       options:
