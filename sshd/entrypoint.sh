@@ -25,12 +25,18 @@ ssh-keygen -A
 [ -d "/etc/sshsavedhostkeys" ] && cp -rp /etc/ssh/ssh_host* /etc/sshsavedhostkeys
 
 
+# If shelluser has no private key, then set up .ssh folder, permissions and generate
+# 
 HOME=/home/shelluser
 PRIVKEY=$HOME/.ssh/id_rsa
 
-# If shelluser has no private key, then set up .ssh folder, permissions and generate
-# 
-[ -f ${PRIVKEY} ] || mkdir -p $HOME/.ssh && chown -R shelluser:shelluser $HOME/.ssh && chmod 700 $HOME/.ssh && su shelluser -c "ssh-keygen -t rsa -q -f ${PRIVKEY} -N \"\" " 
+if [[ ! -f ${PRIVKEY} ]]
+then
+    mkdir -p $HOME/.ssh 
+    chown -R shelluser:shelluser $HOME/.ssh
+    chmod 700 $HOME/.ssh
+    su shelluser -c "ssh-keygen -t rsa -q -f ${PRIVKEY} -N \"\" " 
+fi
 
 # https://linux.101hacks.com/unix/sshd/
 # Using sshd -D to keep the daemon attached so that docker does not terminate
